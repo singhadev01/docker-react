@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    build: 
+      #all files will comes from current dir so add .  in context
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      # use . to indicate local directory on machine and after : is dir in container
+      - .:/app 
+  # create  new service  and override defualt command in Dockerfile
+  # with command:  param
+
+  tests:
+    build: 
+      #all files will comes from current dir so add .  in context
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      # use . to indicate local directory on machine and after : is dir in container
+      - .:/app 
+    command: ["npm", "run", "test"]
