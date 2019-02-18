@@ -19,3 +19,25 @@ before_install:
 # override defauly run command with nom run test
 script:
   - docker run singhadev01/docker-react npm run test -- --coverage
+
+
+#
+# travis ci comes up with option to deploy to predefined providers
+# travis ci will zip our code from master branch and push to s3 bucket
+# sepecify app name value as bucket_path
+
+# use awas api key to grant travis-ci access  to aws
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-916434611368"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_ACCESS_KEY"
+
