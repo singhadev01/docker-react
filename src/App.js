@@ -17,7 +17,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Used docker-compose.yml to start docker web_1 services
+            Deploying on AWS EBS
           </a>
         </header>
       </div>
