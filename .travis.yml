@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+
+#
+# series of commands to run before running tests
+#
+
+# -t  for tagging image you can name it anything
+
+before_install:
+  - docker build -t singhadev01/docker-react -f Dockerfile.dev .
+
+
+#
+# series of command to run as part of test suite
+# if u get status code !=0  then travis assum test failed
+
+# override defauly run command with nom run test
+script:
+  - docker run singhadev01/docker-react npm run test -- --coverage
